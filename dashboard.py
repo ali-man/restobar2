@@ -23,13 +23,13 @@ class CustomIndexDashboard(Dashboard):
                 display='tabs',
                 children=[
                     modules.ModelList(
-                        title='Web-site',
+                        title='Товары',
                         models=(
-                            'www.models.Profile',
-                            'www.models.NewsProject',
-                            'www.models.Articles',
-                            'www.models.NewsMinecraft',
-                            'www.models.NewFlatPage',
+                            'apps.products.models.Category',
+                            'apps.products.models.Manufacturer',
+                            'apps.products.models.Country',
+                            'apps.products.models.Product',
+                            'apps.products.models.OtherInfo',
                         )
                     ),
                     modules.ModelList(
