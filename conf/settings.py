@@ -132,7 +132,7 @@ CKEDITOR_IMAGE_BACKEND = 'pillow'
 # -------------------- ckeditor -----------------------
 
 
-ADMIN_TOOLS_INDEX_DASHBOARD = 'dashboard.CustomIndexDashboard'
+ADMIN_TOOLS_INDEX_DASHBOARD = 'conf.dashboard.CustomIndexDashboard'
 
 
 MEDIA_ROOT = (os.path.join(BASE_DIR, 'media'))

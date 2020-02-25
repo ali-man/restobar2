@@ -122,8 +122,8 @@ class OtherInfo(models.Model):
     desc = RichTextUploadingField(verbose_name='Описание')
 
     class Meta:
-        verbose_name = 'Доп. инфа товара'
-        verbose_name_plural = 'Доп. инфа товаров'
+        verbose_name = 'Доп. инфа по товару'
+        verbose_name_plural = 'Доп. инфа по товарам'
 
     def __str__(self):
         return self.title
