@@ -1,6 +1,6 @@
 import os
 
-from conf.switch_local_and_prod import LOCAL, SECRET_KEY
+from conf.switch_local_and_prod import LOCAL, SECRET_KEY, DATABASES
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -18,20 +18,29 @@ ALLOWED_HOSTS = []
 
 
 INSTALLED_APPS = [
+    'admin_tools',
+    'admin_tools.theming',
+    'admin_tools.menu',
+    'admin_tools.dashboard',
+
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.flatpages',
 
     # libs
     'sorl.thumbnail',
     'mptt',
     'compressor',
+    'ckeditor',
+    'ckeditor_uploader',
 
     # apps
-    'apps.products'
+    'apps.products',
 ]
 
 MIDDLEWARE = [
@@ -51,7 +60,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'templates')]
         ,
-        'APP_DIRS': True,
+        'APP_DIRS': False,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -59,6 +68,11 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'loaders': [
+                'admin_tools.template_loaders.Loader',
+                'django.template.loaders.filesystem.Loader',
+                'django.template.loaders.app_directories.Loader',
+            ]
         },
     },
 ]
@@ -74,20 +88,8 @@ if LOCAL:
         }
     }
 else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'name',
-            'USER': 'user',
-            'PASSWORD': 'pass',
-            'HOST': '127.0.0.1',
-            'PORT': '5432',
-        }
-    }
+    DATABASES = DATABASES
 
-
-# Password validation
-# https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -114,6 +116,25 @@ USE_L10N = True
 
 USE_TZ = True
 
+SITE_ID = 1
+
+
+# -------------------- ckeditor -----------------------
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_JQUERY_URL = 'static/js/jquery.min.js'
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Full',
+        'width': '100%',
+        'height': 70,
+    }, }
+CKEDITOR_IMAGE_BACKEND = 'pillow'
+# -------------------- ckeditor -----------------------
+
+
+ADMIN_TOOLS_INDEX_DASHBOARD = 'dashboard.CustomIndexDashboard'
+
+
 MEDIA_ROOT = (os.path.join(BASE_DIR, 'media'))
 MEDIA_URL = "/media/"
 
@@ -130,3 +151,5 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'compressor.finders.CompressorFinder',
 )
+
+COMPRESS_ROOT = os.path.join(BASE_DIR, 'static/')

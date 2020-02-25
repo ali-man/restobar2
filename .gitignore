@@ -1,0 +1,6 @@
+.idea
+apps/*/migrations/0*
+media/*
+venv
+db.sqlite3
+manage.py
