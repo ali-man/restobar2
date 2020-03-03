@@ -1,0 +1,36 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    {% include 'head.html' %}
+    {% block css %}{% endblock %}
+
+    <title>Рестобар -
+        {% block title %}
+        {% endblock %}
+    </title>
+</head>
+<body>
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+{% include 'sections/navbar.html' %}
+
+{% block content %}
+
+{% endblock %}
+
+{% include 'footer.html' %}
+
+{% include 'scripts.html' %}
+{% block js %}{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+{% extends 'admin_tools/dashboard/module.html' %}
+{% block module_content %}
+    <h4>{{ module.message }}</h4>
+    <ul>
+        <li>{{ module.config.site_name }}</li>
+    </ul>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="test">
+        <button type="submit">send</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,92 @@
+{% load static %}
+{% load mptt_tags %}
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark special-color-dark">
+
+    <!-- Navbar brand -->
+    <a class="navbar-brand text-uppercase" href="#">RESTOBAR</a>
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent2"
+            aria-controls="navbarSupportedContent2" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent2">
+        <!-- Links -->
+        <ul  class="navbar-nav mr-auto">
+            <!-- Features -->
+            <li class="nav-item dropdown mega-dropdown active">
+                <a class="nav-link dropdown-toggle text-uppercase" id="navbarDropdownMenuLink2" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">Каталог
+                    <span class="sr-only">(current)</span>
+                </a>
+                <div class="dropdown-menu mega-menu v-2 z-depth-1 special-color py-5 px-3"
+                     aria-labelledby="navbarDropdownMenuLink2">
+                    <div class="row">
+                        {% recursetree categories %}
+                                {% if not node.parent %}
+                                    <div class="col-md-6 col-xl-2 sub-menu mb-xl-0 mb-4">
+                                        <h6 class="sub-title text-uppercase font-weight-bold white-text">{{ node.name }}</h6>
+                                {% else %}
+                                    <li>
+                                    <a class="menu-item pl-0" href="#!">
+                                        <i class="fas fa-caret-right pl-1 pr-3"></i>{{ node.name }}
+                                    </a>
+                                    </li>
+                                {% endif %}
+                                {% if not node.is_leaf_node %}
+                                    <ul class="children list-unstyled">
+                                        {{ children }}
+                                    </ul>
+                                {% endif %}
+                                {% if not node.parent %}
+                                    </div>
+                                {% endif %}
+                        {% endrecursetree %}
+                    </div>
+                </div>
+            </li>
+            <!-- Technology -->
+            <li class="nav-item dropdown mega-dropdown">
+                <a class="nav-link dropdown-toggle text-uppercase" id="navbarDropdownMenuLink3" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">Доставка и оплата</a>
+            </li>
+            <!-- Lifestyle -->
+            <li class="nav-item dropdown mega-dropdown">
+                <a class="nav-link dropdown-toggle text-uppercase" id="navbarDropdownMenuLink4" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">Гарантия</a>
+            </li>
+            <li class="nav-item dropdown mega-dropdown">
+                <a class="nav-link dropdown-toggle text-uppercase" id="navbarDropdownMenuLink4" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">Бренды</a>
+            </li>
+            <li class="nav-item dropdown mega-dropdown">
+                <a class="nav-link dropdown-toggle text-uppercase" id="navbarDropdownMenuLink4" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">Услуги</a>
+            </li>
+            <li class="nav-item dropdown mega-dropdown">
+                <a class="nav-link dropdown-toggle text-uppercase" id="navbarDropdownMenuLink4" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">Информация</a>
+            </li>
+            <li class="nav-item dropdown mega-dropdown">
+                <a class="nav-link dropdown-toggle text-uppercase" id="navbarDropdownMenuLink4" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">Контакты</a>
+            </li>
+
+        </ul>
+        <!-- Links -->
+
+        <!-- Search form -->
+        <form class="form-inline">
+            <div class="md-form my-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Поиск по сайту" aria-label="Search">
+            </div>
+        </form>
+
+    </div>
+    <!-- Collapsible content -->
+
+</nav>
+<!-- Navbar -->
