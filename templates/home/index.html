@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% include 'home/carousel.html' %}
+
+    {% include 'home/categories.html' %}
+
+    {% include 'home/news.html' %}
+
+    {% include 'home/about.html' %}
+
+    {% include 'home/more.html' %}
+{% endblock %}
+
+
+{% block js %}
+    <script>
+        $('.carousel').carousel({
+            interval: 6000,
+            pause: "false"
+        });
+    </script>
+{% endblock %}
