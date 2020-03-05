@@ -3,13 +3,14 @@
 
 ## Подключение статических файлов (css, js, img, fonts, ...)
     {% load static %}
-
-## < title>Имя страницы< /title>
-    {% block title %} Имя страницы {% endblock %}
+    {% static 'path/name.format' %}
     
 ## Подключение css, js вне base.html
     {% block css %} <link href="{% static 'css/name.css' %}" /> {% endblock %}
     {% block js %} <script href="{% static 'js/name.js' %}" /> {% endblock %}
+    
+## < title>Имя страницы< /title>
+    {% block title %} Имя страницы {% endblock %}
 
 ## Импорт в основной шаблон
     {% block content %}

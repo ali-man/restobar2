@@ -1,12 +1,13 @@
 import os
 
-from conf.switch_local_and_prod import LOCAL, DATABASES
+from conf.switch_local_and_prod import LOCAL, SECRET_KEY, DATABASES
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # sys.path.insert(0, os.path.join('apps'))
 
-SECRET_KEY = 'w+=!lhwq)r=faead(%eojd=(vd7^nqrqh-#79!82=%d9%p!!8y'
+SECRET_KEY = SECRET_KEY
+
 
 if LOCAL:
     DEBUG = True
@@ -40,7 +41,6 @@ INSTALLED_APPS = [
 
     # apps
     'apps.products',
-    'apps.general',
 ]
 
 MIDDLEWARE = [
@@ -67,7 +67,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'apps.general.context_processors.general_context',
             ],
             'loaders': [
                 'admin_tools.template_loaders.Loader',
@@ -133,7 +132,7 @@ CKEDITOR_IMAGE_BACKEND = 'pillow'
 # -------------------- ckeditor -----------------------
 
 
-ADMIN_TOOLS_INDEX_DASHBOARD = 'dashboard.CustomIndexDashboard'
+ADMIN_TOOLS_INDEX_DASHBOARD = 'conf.dashboard.CustomIndexDashboard'
 
 
 MEDIA_ROOT = (os.path.join(BASE_DIR, 'media'))
