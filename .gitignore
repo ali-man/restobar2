@@ -4,3 +4,4 @@ media/*
 venv
 manage.py
 templates/old
+coffeesite
